@@ -5,14 +5,21 @@ Returns: a List of integers
 
 
 def sliding_window_max(nums, k):
-    box = []  # make a box
-    window = k  # Set the length of the window, k
-    # do a for loop for the length of the window through the array by positioning
-    slider_stop = len(nums) - 3
-    for i in range(0, slider_stop):
-        for i in range(nums[i], nums[(i+window)]):
-            # within the range of that window, return the max()
-            box.append(max(nums))
+    box = [] # make a
+    # set window range
+    windowFirst = 0
+    windowLast = windowFirst+(k-1)
+    while windowLast != len(nums):
+        curMax = nums[windowFirst]
+        # iterate through window
+        for i in range(windowFirst, windowLast+1):
+
+            if nums[i] > curMax:
+                curMax = nums[i]
+        box.append(curMax)
+        # move the window by 1
+        windowFirst += 1
+        windowLast += 1
     return box
 
 
